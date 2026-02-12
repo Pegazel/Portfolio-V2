@@ -1,0 +1,1654 @@
+*,
+*::before,
+*::after {
+    margin: 0; 
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+html {    
+    overflow-x: hidden;
+    /* -ms-scroll-snap-type: y mandatory;
+        scroll-snap-type: y mandatory; */
+    scroll-behavior: smooth;
+
+}
+
+body{
+    background-color: rgba(0, 0, 0, 0.5);
+    background-image: url(images/light-mode.jpg);
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed;
+    background-position: center;
+    max-width: 100%;
+    font-family: 'Graduate', serif;
+    color: rgb(255, 255, 255);
+    overflow-x: hidden;
+}
+
+header {
+    height: 100vh;
+    width: 100dvw;
+    top: 0;
+    left: 0;
+    position: fixed;
+    pointer-events: none;
+    z-index: 5000; /* On met le header au sommet de la pile */
+} 
+
+
+ .top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 100px 1fr 100px; /* Colonnes fixes pour les côtés */
+    align-items: center;
+    padding: 20px;
+    z-index: 5100;
+    pointer-events: none;
+}
+
+.menu-burger, 
+.dark-mode-toggle, 
+.overlay-menu {
+    pointer-events: auto;
+}
+
+/* Si tu as des liens ou des boutons dans ton overlay menu, assure-toi qu'ils cliquent aussi */
+.nav-links a {
+    pointer-events: auto;
+}
+
+/* Rétablit le clic UNIQUEMENT pour les éléments interactifs du header */
+.burger-wrapper, .name, .nav-links a, .dark-mode-wrapper, .filter-nav, .wrapper {
+    pointer-events: auto; /* Réactive le clic sur les éléments */
+}
+
+
+.name {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 3rem; /* Légèrement réduit pour l'équilibre */
+    margin: 0;
+}
+
+.dark-mode-wrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.menu-burger, .dark-mode-toggle {
+    z-index: 5200;
+    pointer-events: auto;
+}
+
+/* --- LE BURGER CLASSIC CERCLE --- */
+.menu-burger {
+    width: 55px;
+    height: 55px;
+    border: 2px solid white;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(0,0,0,0.1);
+}
+
+.menu-burger span {
+    width: 25px;
+    height: 2px;
+    background-color: white;
+    transition: 0.3s;
+}
+
+/* Hover Orange */
+.menu-burger:hover {
+    border-color: #ea580c;
+    box-shadow: 0 0 15px rgba(234, 88, 12, 0.4);
+}
+
+.menu-burger:hover span {
+    background-color: #ea580c;
+}
+
+/* Animation X */
+.menu-burger.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.menu-burger.active span:nth-child(2) { opacity: 0; }
+.menu-burger.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* --- L'OVERLAY (Petit, sous le burger) --- */
+.overlay-menu {
+    position: absolute;
+    top: 80px; /* Juste en dessous du burger */
+    left: 20px;
+    width: 200px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(30, 30, 30, 0.55); 
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.4s ease;
+    z-index: 1200;
+}
+
+.overlay-menu.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.nav-links {
+    list-style: none; /* Supprime les puces/points de liste */
+    padding: 0;       /* Enlève le décalage automatique à gauche */
+    margin: 0;        /* Enlève les marges par défaut */
+    width: 100%;      /* Occupe toute la largeur de l'overlay */
+}
+
+.nav-links li::before, 
+.nav-links a::before {
+    content: none !important; /* Supprime tout contenu généré avant le texte */
+    display: none !important;
+}
+
+.nav-links li { 
+  margin: 15px 0; 
+}
+
+.nav-links a {
+    color: white;
+    font-family: 'Jost', sans-serif;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    transition: 0.3s;
+    
+}
+
+.nav-links a:hover { color: #ea580c; padding-left: 5px; }
+
+
+
+a{
+    text-decoration: none;
+}
+
+
+button.dark-mode-toggle {
+    all: initial;
+    text-align: right;
+    margin-right: 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    opacity: 1;
+}
+
+
+/* Styles pour le thème sombre */
+body.dark-mode {
+  background-image: url(images/dark-mode1.jpg);
+  color: #fff; 
+}
+
+body.dark-mode #cercle {
+  width: 150px;
+  height: 150px;
+  background-image: radial-gradient(rgba(255, 162, 0, 0), rgba(128, 0, 255, 0));
+  left: 51%;
+}
+
+
+
+.top img{
+  width: 70px;
+  margin-right: 30px;
+}
+
+
+#cercle {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background-image: radial-gradient(rgba(255, 162, 0, 0.848), rgba(128, 0, 255, 0));
+  border: solid 2px rgb(255, 255, 255);
+  border-radius: 50%;
+  top: 60%; 
+  left: 50.5%; 
+  transform: translate(-50%, -50%);
+}
+
+.soleil {
+    z-index: 4500; /* Entre le contenu (10-100) et le burger (5000) */
+    pointer-events: auto; /* Permet de cliquer sur les liens du soleil */
+}
+
+.soleil a {
+    pointer-events: auto; /* Sécurité pour les liens */
+    position: relative;
+    z-index: 4600;
+}
+
+nav>div{
+  border-bottom: 2px solid rgb(255, 255, 255); 
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.ligneH1 {
+  width: 15%;
+  top: 60%; 
+  left: 34%; 
+}
+
+.ligneH2 {
+  width: 15%;
+  top: 60%; 
+  left: 68%; 
+}
+
+.ligneV3 {
+  width: 10%;
+  top: 33%; 
+  left: 45.5%; 
+  transform: rotate(90deg);
+}
+
+.ligneV4 {
+  width: 10%;
+  top: 87%; 
+  left: 45.5%; 
+  transform: rotate(90deg);
+}
+
+.ligneD1 { 
+  width: 17%;
+  border-bottom: 2px solid rgb(255, 255, 255,0.2);
+  top: 34%; 
+  left: 29%; 
+  transform: rotate(45deg);
+  text-align: center;
+  
+}
+
+.ligneD2 {
+  width: 15%;
+  border-bottom: 2px solid rgb(255, 255, 255,0.2);
+  top: 80%; 
+  left: 58%; 
+  transform: rotate(45deg);
+  text-align: center;
+}
+
+.ligneD3 {
+  width: 15%;
+  border-bottom: 2px solid rgb(255, 255, 255,0.2);
+  top: 80%; 
+  left: 29%; 
+  transform: rotate(-45deg);
+  text-align: center;
+}
+
+.ligneD4 {
+  width: 19%;
+  border-bottom: 2px solid rgb(255, 255, 255,0.2);
+  top: 30%; 
+  left: 55%; 
+  transform: rotate(-45deg);
+  text-align: center;
+}
+
+nav a{
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 2em;
+  opacity: 1;
+  position: relative;
+  top: 18px;
+}
+
+body.dark-mode main{
+  background-image: url(images/glass.png);
+}
+
+main{
+  background-image: url(images/glass2.png) ;
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-attachment: fixed;
+  background-position: center;
+  max-width: 100%;
+  margin-top: 100vh;
+}
+
+
+
+/* Design Solaire & Glassmorphism */
+#projets-container {
+    padding: 80px 5%;
+    color: #1a1a1a;
+}
+
+.filter-nav {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 12px 25px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espace entre l'icône et le texte */
+    padding: 10px 25px;
+    /* Effet Glassmorphism */
+    background: rgba(255, 255, 255, 0.454);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px; /* Forme pilule */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+body.dark-mode .filter-btn:hover {
+    color: white;
+}
+
+.filter-btn:hover i {
+    color: #ea580c; /* Orange au hover */
+}
+
+.filter-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-3px); /* Petit saut vers le haut */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .filter-btn.active {
+  background: none; 
+}
+
+.filter-btn.active {
+  background: white;
+  color: var(--active-color); /* Variable injectée par le JS */
+  border: 2px solid var(--active-color);
+  box-shadow: 0 10px 20px -5px var(--shadow-color); /* Ombre colorée */
+  transform: scale(1.08);
+}
+
+/* Style des nouvelles cartes (fini la 3D, place au zoom) */
+.card {
+    position: relative;
+    height: 450px;
+    border-radius: 40px;
+    overflow: hidden;
+    background: #fff;
+    transition: transform 0.5s ease;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1s ease;
+}
+
+.card:hover img {
+    transform: scale(1.1);
+}
+
+.card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.card-content>h3 { 
+    opacity: 70%;
+}
+
+/* --- COULEURS PAR CATÉGORIE --- */
+/* On définit les styles de base qui seront surchargés par le JS */
+.category-badge {
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.arrow-icon {
+    width: 35px;
+    height: 35px;
+    background: white;
+    color: black;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.card-description {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.8);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s ease;
+}
+
+.card:hover .card-description {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card-footer {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 10px;
+}
+
+/* .tags span {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.5);
+    margin-right: 8px;
+} */
+
+
+.tags {
+    display: flex;
+    flex-wrap: wrap; /* Permet d'aller à la ligne proprement */
+    gap: 5px; /* Espace entre chaque tag */
+    margin-right: 10px; /* Espace de sécurité avant la flèche */
+}
+
+.tags span {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.5);
+    /* AJOUTE CETTE LIGNE : */
+    white-space: nowrap; 
+}
+
+.arrow-icon {
+    width: 35px;
+    height: 35px;
+    background: white;
+    color: black;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+
+
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* Crée la grille */
+    gap: 30px; /* Espace entre les cartes */
+    padding: 20px 0;
+}
+
+
+h2{
+  font-size: 2.5rem;
+  text-align: center;
+  padding: 2%;
+}
+
+h3{
+  font-size: 2rem;
+  margin-bottom: 5px;
+  color: #ffffff;
+}
+
+p{
+  margin: 0;
+  font-weight: 300;
+}
+
+ul{
+  margin-left: 21px;
+  padding: 0;
+  font-weight: 300;
+  list-style: none;
+}
+
+li{
+  padding-bottom: 8px;
+  position: relative;
+}
+
+li:before{
+  content: 'x';
+  position: absolute;
+  left: -20px;
+  opacity: 0.55;
+}
+
+.slider {
+  overflow: hidden;
+  width: 100%; 
+  height: 40vh;
+  margin: auto; 
+  padding: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.logo-container {
+  display: flex; 
+  transition: transform 0.5s ease; 
+}
+
+
+.logo:hover {
+    opacity: 1;
+    transform: scale(1.1);
+} 
+
+/* Le conteneur d'un groupe (icône + texte) */
+.logo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Ton style d'icône existant */
+.logo {
+    width: 100%; /* Il prend toute la largeur du wrapper */
+    height: 80px; /* Hauteur fixe pour l'icône */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: brightness(0) invert(1); /* Filtre blanc */
+    margin-bottom: 10px; /* Espace entre icône et texte */
+    opacity: 0.8;
+    transition: 0.3s ease;
+}
+
+/* Le style du nom */
+.logo-name {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.9rem;
+    color: white;
+    opacity: 0.6;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Optionnel : le nom devient plus visible au hover */
+.logo-item:hover .logo-name {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+
+
+.section_propos {
+    padding: 80px 10%;
+    display: flex;
+    flex-direction: column; /* Titre en haut, contenu en bas */
+    align-items: center;
+}
+
+.about-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    width: 100%;
+    margin-top: 50px;
+}
+
+/* Animation des mots-clés autour de la photo */
+.about-visual {
+    position: relative;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-wrapper {
+    position: relative;
+    z-index: 2;
+    margin-top: 50px;
+    width: 200px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Remplit le cercle sans déformation */
+    display: block;
+}
+
+@media screen and (max-width: 768px) {
+    .image-wrapper {
+        width: 150px; /* On réduit un peu la taille sur mobile */
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.title-reveal {
+    text-align: center;
+    width: 100%;
+}
+
+.keywords-circle .kw {
+    position: absolute;
+    font-family: 'Graduate', serif;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.901);
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: color 0.3s;
+    cursor: default;
+}
+
+.kw i {
+    margin-right: 10px;
+    font-size: 1.1rem;
+}
+
+.keywords-circle .kw:hover {
+    color: #ea580c; /* Ton orange signature */
+    text-shadow: 0 0 15px rgba(234, 88, 12, 0.5);
+}
+
+/* Placement manuel des mots autour du cercle */
+.kw:nth-child(1) { top: 0px; left: 30px; }
+.kw:nth-child(2) { right: -80px; top: 50%; }
+.kw:nth-child(3) { bottom: -50px; left: 30%; }
+.kw:nth-child(4) { left: -60px; top: 60%; }
+.kw:nth-child(5) { top: 0%; right: -20px; }
+
+
+/* Couleurs spécifiques basées sur ton image */
+.kw:nth-child(1) { color: #db377b; border-color: #e67e22; } /* Orange */
+.kw:nth-child(2) { color: #ffe28d; border-color: #f1c40f; } /* Jaune */
+.kw:nth-child(3) { color: #ffff1b; border-color: #d4d400; } /* Vert/Jaune */
+.kw:nth-child(4) { color: #bc0a0a; border-color: #e59866; } /* Marron/Rouge */
+.kw:nth-child(5) { color: #4c8c8c; border-color: #bdc3c7; } /* Gris */
+
+/* Bio */
+.about-content { flex: 1.2; }
+
+.bio-text p {
+    font-family: 'Jost', sans-serif;
+    line-height: 1.8;
+    font-size: 1.15rem;
+    margin-bottom: 20px;
+    margin-left: 50px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.bio-text strong { color: white; font-weight: 600; }
+
+
+
+/* Barre de contact latérale */
+.side-contact {
+    position: fixed;
+    z-index: 1500;
+    display: flex;
+    transition: all 0.5s ease;
+}
+
+/* La ligne verticale */
+.contact-line {
+    width: 2px;
+    height: 150px; /* Ajuste la hauteur selon tes goûts */
+    background: white;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+/* Conteneur des icônes */
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding-bottom: 40px; /* Espace par rapport au bas de l'écran */
+}
+
+.contact-links a {
+    color: white;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+}
+
+/* Effet au survol */
+.contact-links a:hover {
+    opacity: 1;
+    transform: translateY(-5px);
+    color: #ea580c; /* La couleur orange de ton thème */
+}
+
+/* --- VERSION DESKTOP (Vertical à gauche) --- */
+@media (min-width: 769px) {
+    .side-contact {
+        left: 40px;
+        bottom: 0;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-line {
+        width: 2px;
+        height: 120px;
+        background: white;
+        margin-bottom: 20px;
+        opacity: 0.5;
+    }
+
+    .contact-links {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        padding-bottom: 40px;
+    }
+}
+
+/* --- VERSION MOBILE (Horizontal en bas) --- */
+@media (max-width: 768px) {
+    .side-contact {
+        left: 0;
+        bottom: 0; /* On la colle au bas */
+        width: 100%;
+        /* background: rgba(20, 20, 20, 0.95); */
+        backdrop-filter: blur(10px);
+        padding-bottom: 40px;
+        padding-top: 15px;
+        justify-content: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        
+        /* État caché au départ sur mobile */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px); 
+        transition: all 0.4s ease;
+        z-index: 1500; /* On la remet en haut pour qu'elle soit cliquable quand elle apparaît */
+    }
+
+    .contact-line {
+        display: none;
+    }
+
+    .contact-links {
+        flex-direction: row;
+        gap: 40px;
+    }
+    
+    /* On force la barre à être SOUS le footer quand on arrive tout en bas 
+       pour que les mentions légales soient cliquables */
+    footer {
+        position: relative;
+        z-index: 1600; /* Le footer passe devant la barre de contact */
+    }
+}
+
+
+
+
+/* Section Parcours */
+
+.section-parcours {
+    padding: 100px 10% 150px 10%;
+    position: relative;
+    background: transparent; /* Pour voir ton fond dark-mode */
+}
+
+.timeline-container {
+    position: relative;
+    max-width: 700px;
+    margin: 50px auto;
+}
+
+/* La ligne grise en fond */
+.timeline-line {
+    position: absolute;
+    left: 20px;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* La ligne blanche qui progresse */
+.timeline-progress {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 0%; /* Animé en JS */
+    background: white;
+}
+
+/* Le petit cercle orange qui suit le scroll */
+.timeline-dot {
+    position: absolute;
+    left: 50%;
+    top: 0; /* Animé en JS */
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background: #ea580c;
+    box-shadow: 0 0 15px #ea580c;
+}
+
+/* Les items */
+.timeline-items {
+    padding-left: 60px;
+}
+
+.timeline-item {
+    margin-bottom: 80px;
+    opacity: 0; /* Animé en JS */
+    transform: translateX(30px); /* Petit décalage */
+}
+
+.timeline-item h3 {
+    font-family: 'Jost', sans-serif;
+    color: var(--text-timeline);
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.timeline-item span {
+  color: var(--accent-parcours);
+  font-weight: bold;
+  /* text-shadow: 
+        0px 0px 8px rgba(255, 255, 255, 0.8); */
+}
+
+.item-date {
+  /* background: var(--accent-parcours); */
+
+  font-family: 'Graduate', serif;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.651);
+  margin-bottom: 10px;
+}
+
+body.dark-mode .timeline-line {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* --- COULEURS SPÉCIFIQUES DES SPANS --- */
+
+/* Gustave Eiffel (Bleu/Vert Université) */
+.univ-eiffel span { 
+  color: #2f2a85; 
+  text-shadow: 
+        0px 0px 8px rgba(255, 255, 255, 0.8), /* Ombre sombre pour les zones claires */
+        0px 0px 2px #2f2a85;
+      }
+
+/* Zeplug (Dégradé Jaune/Vert - on prend une couleur dominante lisible) */
+.zeplug span { color: #ffe300; } 
+
+/* Caisse d'Epargne (Rouge) */
+.caisse-epargne span { color: #e50616; }
+
+/* EFREI (Bleu Cyan) */
+.efrei span { color: #0d7cc0; }
+
+/* DGAC (Bleu Foncé) */
+.dgac span { 
+  color: #10218b; 
+    /* C'est ici que la magie opère */ 
+  text-shadow: 
+        0px 0px 8px rgba(255, 255, 255, 0.8), /* Ombre sombre pour les zones claires */
+        0px 0px 2px #10218b;
+}
+
+/* --- AJUSTEMENT POUR LE DARK MODE --- */
+/* Si certaines couleurs sont trop sombres pour le fond noir, 
+   on peut les éclaircir légèrement ici */
+body.dark-mode .dgac span { color: #ea580c; 
+text-shadow: 
+        0px 0px 8px rgba(0, 0, 0, 0.8), /* Ombre sombre pour les zones claires */
+        0px 0px 2px #10218b;}
+body.dark-mode .univ-eiffel span { color: #ea580c; 
+text-shadow: 
+        0px 0px 8px rgba(0, 0, 0, 0.8), /* Ombre sombre pour les zones claires */
+        0px 0px 2px #2f2a85;}
+body.dark-mode .zeplug span { color: #ea580c; }
+body.dark-mode .caisse-epargne span { color: #ea580c; }
+body.dark-mode .efrei span { color: #ea580c; }
+
+
+.institution-header {
+    display: flex;
+    align-items: center; /* Aligne le logo au milieu du texte verticalement */
+    gap: 15px; /* Espace entre le logo et le titre */
+    margin-bottom: 10px;
+}
+
+.institution-logo {
+    max-width: 100px;
+    max-height: 50px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    
+    /* On garde ton style monochrome pour le design */
+    /* filter: brightness(0) invert(1); */
+    opacity: 0.9;
+    transition: transform 0.3s ease;
+}
+
+/* Au survol de l'item, le logo peut reprendre sa couleur ou grossir */
+.timeline-item:hover .institution-logo {
+    transform: scale(1.1);
+}
+
+
+footer{
+  /* position: relative; */
+  background-color: #141414;
+  box-shadow: 0px -3px 15px #141414;
+  height: 8vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer a{
+  color: #FFF;
+}
+
+p a {
+  color: #FFF;
+  text-decoration: underline;
+}
+
+/* Barre de défilement verticale */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #f1f1f1;
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #818181;
+}
+::-webkit-scrollbar-track {
+  background-color: #2f2f2f;
+}
+
+
+
+
+/* --- LA MODALE --- */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 2000;
+    left: 0; top: 0; 
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+.modal-content {
+    background-color: #141414;
+    margin: 5vh auto;
+    padding: 60px 40px 30px 40px; /* Padding haut pour laisser la croix libre */
+    width: 90%;
+    max-width: 1300px;
+    height: 85vh;
+    border-radius: 30px;
+    position: relative;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+#modalBody {
+    overflow-y: auto;
+    padding-right: 15px;
+}
+
+/* --- LA CROIX DE FERMETURE --- */
+.close-modal {
+    position: absolute;
+    left: 30px; 
+    top: 20px;
+    font-size: 50px; /* Taille originale */
+    line-height: 1;
+    cursor: pointer; 
+    color: white;
+    z-index: 100; /* Assure qu'elle est au-dessus de tout */
+    transition: transform 0.3s ease;
+}
+
+.close-modal:hover {
+    transform: scale(1.2);
+    color: #ea580c;
+}
+
+/* --- LA GRILLE (2 colonnes) --- */
+.modal-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr; /* Image plus large que le texte */
+    gap: 50px;
+    align-items: start;
+}
+
+/* --- COLONNE GAUCHE (Images + Expertises) --- */
+.modal-left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.big-img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    object-fit: contain;
+}
+
+.modal-gallery {
+    display: grid;
+    /* Les images s'étalent sur toute la largeur de la grande image */
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 15px;
+}
+
+.modal-small-img {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    filter: grayscale(100%);
+    transition: 0.3s ease;
+}
+
+.modal-small-img:hover {
+    filter: grayscale(0%);
+}
+
+/* --- COLONNE DROITE (Texte) --- */
+.modal-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.modal-right h2 {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.modal-right p {
+    font-family: 'Jost', sans-serif;
+    line-height: 1.6;
+    color: #ccc;
+    white-space: pre-line;
+    text-align: left;
+}
+
+/* --- NAVIGATION & PIED DE PAGE --- */
+.modal-footer {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1000px) {
+    .modal-grid {
+        grid-template-columns: 1fr; /* Une seule colonne sur mobile */
+    }
+    .modal-content {
+        height: 95vh;
+        padding: 50px 20px 20px 20px;
+    }
+}
+
+/* Navigation entre projets */
+.modal-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.modal-action-zone a{
+    margin-left: 11px;
+}
+
+.nav-btn {
+    background: rgba(255,255,255,0.05);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: 'Jost';
+}
+
+.nav-btn:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+
+
+
+
+
+@media (max-width: 1060px) { 
+
+  .ligneH1 {
+      top: 60%; 
+      left: 32%; 
+  }
+  
+  .ligneH2 {
+      top: 60%; 
+      left: 70%; 
+  }
+  
+  .ligneV3 {
+      width: 12%;
+      top: 39%; 
+      left: 46%; 
+  }
+  
+  .ligneV4 {
+      width: 12%;
+      top: 82%; 
+      left: 46%; 
+  }
+  
+  .ligneD1 {
+      top: 38%; 
+      left: 29%; 
+  }
+  
+  .ligneD2 {
+      top: 77%; 
+      left: 61%; 
+  }
+  
+  .ligneD3 {
+      top: 77%; 
+      left: 27%; 
+  }
+  
+  .ligneD4 {
+      top: 37%; 
+      left: 59%; 
+  }
+
+  .name{
+      font-size: 3rem;
+  }
+
+  nav a{
+      font-size: 1.5rem;
+      opacity: 1;
+      position: relative;
+      top: 12px;
+  }
+
+}
+
+@media (max-width: 800px) { 
+
+  .ligneD2 { 
+    width: 20%;
+  }
+
+  .button-group {
+    flex-wrap: wrap;
+    padding: 5rem 0 5rem 0;
+  }
+  .button-group div {
+    margin-top: 3rem;
+  }
+    body.dark-mode #cercle {    
+    width: 130px;
+    height: 130px;
+  }
+}
+@media (max-width: 700px) { 
+  .text {
+    font-size: 1.5rem;
+  }
+  .quatre {
+    right: -20%;
+  }
+  .section_propos>p{
+    width: 100%;
+    padding-left: 20px;
+    margin-top: 30px;
+  }
+  
+}
+
+
+@media (max-width: 650px) { 
+
+.ligneH1 {
+    top: 60%; 
+    left: 25%; 
+}
+
+.ligneH2 {
+    top: 60%; 
+    left: 77%; 
+}
+
+.ligneV3 {
+    width: 15%;
+    top: 35%; 
+    left: 45%; 
+}
+
+.ligneV4 {
+    width: 15%;
+    top: 85%; 
+    left: 45%; 
+}
+
+.ligneD1 {
+    top: 36%; 
+    left: 25%; 
+}
+
+.ligneD2 {
+    top: 77%; 
+    left: 63%; 
+    width: 25%;
+  }
+
+.ligneD3 {
+    top: 77%; 
+    left: 24%; 
+}
+
+.ligneD4 {
+    top: 37%; 
+    left: 63%; 
+    width: 25%;
+}
+
+nav a{
+    font-size: 1.5rem;
+    opacity: 1;
+    position: relative;
+    top: 12px;
+}
+
+}
+@media (max-width: 570px) { 
+
+.name { 
+  font-size: 1.5rem;
+}
+
+.top img{
+  width: 50px;
+}
+
+body{
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+button.dark-mode-toggle {
+  margin-right: 0px;
+}
+
+.logo {
+  width: 100px; 
+}
+
+
+
+.ligneH1 {
+    top: 60%; 
+    left: 25%; 
+}
+
+.ligneH2 {
+    top: 60%; 
+    left: 77%; 
+}
+
+.ligneV3 {
+    width: 15%;
+    top: 37%; 
+    left: 45%; 
+}
+
+.ligneV4 {
+    width: 15%;
+    top: 82%; 
+    left: 45%; 
+}
+
+.ligneD1 {
+    top: 36%; 
+    left: 22%; 
+}
+
+.ligneD2 {
+    top: 77%; 
+    left: 63%; 
+    width: 25%;
+  }
+
+.ligneD3 {
+    top: 77%; 
+    left: 24%; 
+}
+
+.ligneD4 {
+    top: 36%; 
+    left: 64%; 
+}
+
+.section-parcours {
+    padding: 60px 5%; /* On réduit les marges latérales */
+}
+
+.timeline-container {
+    margin: 30px 10px;
+}
+
+/* On empile le logo et le titre verticalement */
+.institution-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.institution-logo {
+    max-width: 80px; /* Un peu plus petit pour mobile */
+    max-height: 40px;
+}
+
+/* On réduit un peu la taille de la police pour éviter que ça prenne trop de place */
+.timeline-item h3 {
+    font-size: 1.2rem;
+    line-height: 1.3;
+}
+
+.timeline-items {
+    padding-left: 40px; /* On rapproche le contenu de la ligne pour gagner de la place */
+}
+
+.timeline-line {
+    left: 15px; /* On décale la ligne aussi */
+}
+
+.bio-text p{
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+
+}
+@media (max-width: 466px) { 
+.ligneH1 { 
+  left: 20%;
+  width: 22%;
+}
+.ligneH2 {
+    left: 81%;
+    width: 22%;
+}
+.ligneV3 {
+    width: 21%;
+    left: 41%; 
+    top: 39%;
+}
+.ligneV4 {
+    width: 21%;
+    left: 41%;
+    top: 78%; 
+}
+.ligneD1 {
+    top: 37%; 
+    left: 12%; 
+    width: 25%;
+}
+.ligneD2 {
+    top: 75%; 
+    left: 65%; 
+    width: 30%;
+}
+.ligneD3 {
+    top: 74%; 
+    left: 13%; 
+    width: 23%;
+}
+.ligneD4 {
+    top: 36%; 
+    left: 63%;
+    width: 30%; 
+}
+.deux{
+  top: 90%;
+  right: 80%;
+}
+.un{
+  top: 50%;
+  right: 120%;
+}
+.six{
+  top: 55%;
+  left: 105%;
+}
+#cercle{
+  width: 100px;
+  height: 100px;
+}
+
+.top img{
+  margin-right: 0;
+}
+}
+
+
+@media (max-width: 400px) { 
+.ligneD2 { 
+  width: 35%;
+}
+.text{
+  display: block;
+}
+
+.wrapper {
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+}
+
+
+@media (max-width: 360px) { 
+
+#cercle{
+  width: 90px;
+  height: 90px;
+}
+
+.ligneH1 { 
+  left: 15%;
+  width: 20%;
+}
+
+.ligneH2 {
+    left: 83%;
+    width: 20%;
+}
+
+.ligneV3 {
+    width: 25%;
+    left: 38%; 
+    top: 42%;
+}
+
+.ligneV4 {
+    width: 25%;
+    left: 38%; 
+    top: 77%;
+}
+
+.ligneD1 a, .ligneD2 a, .ligneD3 a, .ligneD4 a{
+  font-size: 1.2rem;
+  top: 10px;
+}
+
+.ligneD1 {
+    top: 43%; 
+    left: 10%; 
+    width: 30%;
+}
+
+.ligneD2 {
+    top: 72%; 
+    left: 62%; 
+    width: 38%;
+}
+
+.ligneD3 {
+    top: 72%; 
+    left: 5%; 
+    width: 30%;
+}
+
+.ligneD4 {
+    top: 43%; 
+    left: 62%;
+    width: 30%; 
+}
+}
+
+
+@media screen and (max-width: 768px) {
+    .logo {
+        height: 50px; /* On réduit la hauteur proportionnellement aux 60px de large */
+    }
+    
+    .logo-name {
+        font-size: 0.65rem; /* Texte plus petit pour coller au nouveau design */
+        letter-spacing: 0px;
+    }
+    
+    .slider {
+        height: 25vh; /* On réduit la hauteur de la section pour mobile */
+    }
+}
+
+
+
+@media screen and (max-width: 1140px) {
+    /* On force la section à s'aligner verticalement */
+    .about-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 40px; /* Espace entre les blocs */
+    }
+
+    /* On repositionne le bloc visuel (photo + mots) */
+    .about-visual {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    /* On transforme le "cercle" de mots en une ligne de badges sous la photo */
+    .keywords-circle {
+        position: static; /* Annule le positionnement absolu des mots */
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 30px; /* Espace sous la photo */
+        width: 100%;
+    }
+
+    .keywords-circle .kw {
+        position: static !important; /* Force l'alignement en ligne */
+        transform: none !important; /* Annule les positions manuelles précédentes */
+        padding: 10px 20px;
+        background: rgba(255, 255, 255, 0.05); /* Effet Glassmorphism */
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        filter: none !important;
+        font-weight: 700;
+    }
+
+    /* On replace la bio en dessous de tout le reste */
+    .about-content {
+        max-width: 800px; /* Pour garder une lecture confortable */
+        margin-top: 20px;
+    }
+
+    .bio-text p {
+    margin-left: 0px;
+  }
+}

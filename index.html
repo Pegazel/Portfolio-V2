@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Graduate&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="shortcut icon" href="images/soleil.png" type="image/x-icon">
+    <script src="./lib/gsap.min.js"></script>
+    <title>Portfolio de Pauline Gazengel</title>
+</head>
+<body>
+    <header>
+        <div class="top">
+        <div class="burger-wrapper">
+            <div class="menu-burger" id="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <div class="overlay-menu" id="overlayMenu">
+                <ul class="nav-links">
+                    <li><a href="#projets">Projets</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#parcours">Parcours</a></li>
+                </ul>
+            </div>
+        </div>
+            <h1 class="name">Pauline Gazengel</h1>
+            <button class="dark-mode-toggle">
+                <img src="images/soleil-dark.png" alt="Mode sombre">
+            </button>
+        </div>
+
+        <nav class="soleil">
+            <div id="cercle"></div>
+            <div class="ligneH1"></div>
+            <div class="ligneH2"></div>
+            <div class="ligneV3"></div>
+            <div class="ligneV4"></div>
+            <div class="ligneD1"><a href="#projets">Projets</a></div>
+            <div class="ligneD2"><a href="#about">À propos</a></div>
+            <div class="ligneD3"><a href="#skills">Skills</a></div>
+            <div class="ligneD4"><a href="#parcours">Parcours</a></div>
+            
+        </nav>
+    </header>
+
+    <div class="side-contact">
+        <div class="contact-line"></div>
+        <div class="contact-links">
+            <a href="https://www.linkedin.com/in/pauline-g-2434ba251/" target="_blank" title="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="mailto:pauline.gazengel@gmail.com" title="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <a href="https://www.instagram.com/pln.photo_/" target="_blank" title="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="images/CV 2023.pdf" target="_blank" title="Mon CV">
+                <i class="fas fa-file-pdf"></i>
+            </a>
+        </div>
+    </div>
+
+
+    <main>        
+        <h2 id="projets">Mes Projets</h2>
+        <section id="projets-container">
+            <nav class="filter-nav">
+                <button class="filter-btn active" data-filter="Tous"><i class="fas fa-layer-group"></i> Tous</button>
+                <button class="filter-btn" data-filter="Dev"><i class="fas fa-code"></i> Web</button>
+                <button class="filter-btn" data-filter="Video"><i class="fas fa-video"></i> Vidéo</button>
+                <button class="filter-btn" data-filter="PAO"><i class="fas fa-palette"></i> PAO </button>
+                <button class="filter-btn" data-filter="UX/UI"><i class="fas fa-pencil-alt"></i> UX/UI</button>
+                <button class="filter-btn" data-filter="360°"><i class="fas fa-globe"></i> 360°</button>
+                <button class="filter-btn" data-filter="Gestion"><i class="fas fa-briefcase"></i> Gestion</button>
+            </nav>
+            <div id="projectWrapper" class="wrapper"></div>
+        </section>
+     
+        <section>
+            <h2 id="skills">Mes skills</h2>
+            <div class="slider">
+                <div class="logo-container"></div>
+            </div>
+        </section>
+
+        <section id="about" class="section_propos">
+            <h2 class="title-reveal">À propos</h2>
+            <div class="about-container">
+                <div class="about-visual">
+                    <div class="keywords-circle">
+                        <span class="kw" data-speed="2"><i class="far fa-lightbulb"></i>Créative</span>
+                        <span class="kw" data-speed="-3"><i class="fas fa-sync-alt"></i>Polyvalente</span>
+                        <span class="kw" data-speed="4"><i class="fas fa-shield-alt"></i>Autonome</span>
+                        <span class="kw" data-speed="-2"><i class="far fa-calendar-alt"></i></i>Organisée</span>
+                        <span class="kw" data-speed="3"><i class="fas fa-bolt"></i>Débrouillarde</span>
+                    </div>
+                    <div class="image-wrapper">
+                        <img src="images/moi.jpg" alt="Pauline Gazengel" class="moi">
+                    </div>
+                </div>
+
+                <div class="about-content">
+                    <div class="bio-text">
+                        <p class="reveal-text">
+                            Actuellement en 3ème année de BUT MMI à l’Université Gustave Eiffel, je me spécialise en création numérique. Passionnée par l’alliance du design et du code, je conçois des expériences interactives qui racontent des histoires.
+                        </p>
+                        <p class="reveal-text">
+                            Mon approche ? Mêler curiosité technique et sensibilité artistique pour transformer des idées complexes en interfaces fluides et esthétiques. Ce portfolio est le reflet de mon parcours : un terrain d’expérimentation où chaque projet est un nouveau défi créatif.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="parcours" class="section-parcours">
+            <h2 class="section-title">Mon Parcours</h2>
+            
+            <div class="timeline-container">
+                <div class="timeline-line">
+                    <div class="timeline-progress"></div>
+                    <div class="timeline-dot"></div> 
+                </div>
+
+                <div class="timeline-items">
+                    <div class="timeline-item dgac">
+                        <div class="item-date">Sept 2025 - Août 2027</div>
+                        <div class="item-content">
+                            <div class="institution-header">
+                                <img src="images/logo/dgac.svg" alt="DGAC" class="institution-logo">
+                            <h3>Chargée de communication</h3>
+                            </div>
+                            <p>Apprentissage à la <span>Direction Générale de l'Aviation civile</span></p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item efrei">
+                        <div class="item-date">2025 - 2027</div>
+                        <div class="item-content">
+                            <div class="institution-header">
+                                <img src="images/logo/efrei.png" alt="Efrei" class="institution-logo">
+                            <h3>Mastère Communication & Stratégie digitale</h3>
+                            </div>
+                            <p><span>Efrei - Paris Panthéon-Assas Université</span></p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item caisse-epargne">
+                        <div class="item-date">Sept 2024 - Août 2025</div>
+                        <div class="item-content">
+                            <div class="institution-header">
+                                <img src="images/logo/CEIDF.png" alt="Caisse d'Epargne" class="institution-logo">
+                            <h3>Chargée de communication Print & Digitale</h3>
+                            </div>
+                            <p>Alternance chez <span>la Caisse d’Epargne Île-de-France</span></p>
+                        </div>
+                    </div>
+
+                    
+                    <div class="timeline-item zeplug">
+                        <div class="item-date">Avril - Août 2024</div>
+                        <div class="item-content">
+                            <div class="institution-header">
+                                <img src="images/logo/zeplug.png" alt="Zeplug" class="institution-logo">
+                                <h3>Social Media & Communication</h3>
+                            </div>
+                            <p>Stage chez <span>Zeplug</span></p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item univ-eiffel">
+                        <div class="item-date">2022 - 2025</div>
+                        <div class="item-content">
+                            <div class="institution-header">
+                            <img src="images/logo/UGE.png" alt="Université Gustave Eiffel" class="institution-logo">
+                            <h3>BUT MMI</h3>
+                            </div>
+                            <p>Métiers du Multimédia et de l’Internet<br><span>Université Gustave Eiffel</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <footer>
+        <a href="mention.html">Mentions légales</a>
+    </footer>
+
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</body>
+<script src="script.js"></script>
+<script src="darkmode.js"></script>
+</html>
