@@ -14,17 +14,32 @@
     <script src="./lib/gsap.min.js"></script>
     <title>Mentions Légales — Pauline Gazengel</title>
     <style>
-        body { font-family: sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 50px auto; padding: 20px; }
-        h1 { color: #0f172a; border-bottom: 2px solid #f4b01cff; padding-bottom: 10px; }
-        h2 { margin-top: 30px; color: #1e293b; }
+        body { font-family: sans-serif; line-height: 1.6; color: #ffffff; max-width: 800px; margin: 50px auto; padding: 20px; }
+        h1 { color: #ffffff; border-bottom: 2px solid #f4b01cff; padding-bottom: 10px; }
+        h2 { margin-top: 30px; color: #ffffff; }
     </style>
 </head>
 <body>
     <header>
         <div class="top">
-            <a href="index.html"><div class="menu">Menu</div></a>
+        <div class="burger-wrapper">
+            <div class="menu-burger" id="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <div class="overlay-menu" id="overlayMenu">
+                <ul class="nav-links">
+                    <li><a href="#projets">Projets</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#parcours">Parcours</a></li>
+                </ul>
+            </div>
+        </div>
             <button class="dark-mode-toggle">
-                <img src="images/soleil-dark.png" alt="">
+                <img src="images/soleil-dark.png" alt="Mode sombre">
             </button>
         </div>
     </header>
@@ -33,7 +48,7 @@
     
     <h2>1. Édition du site</h2>
     <p>Le présent site est édité par : <strong>Pauline Gazengel</strong>.<br>
-    Contact : [Ton Adresse Mail ici]</p>
+    Contact : <a href="mailto:pauline.gazengel@proton.me" title="Email">pauline.gazengel@proton.me</a></p>
 
     <h2>2. Hébergement</h2>
     <p>Le site est hébergé par <strong>Vercel Inc.</strong><br>
